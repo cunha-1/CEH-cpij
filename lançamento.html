@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lançamento de Produtos</title>
+    <link rel="icon" href="igeni__3_-removebg-preview.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="despesas.css">
+</head>
+<body>
+    <div class="header">
+        <img src="igeni__1_-removebg-preview.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="form-container">
+        <h2>Lançamento de Produtos</h2>
+        <form id="productForm" onsubmit="return submitProduct()">
+            <div class="input-group">
+                <label for="product">Produto</label>
+                <select id="product" name="product" required>
+                    <option value="">Selecione o produto</option>
+                    <option value="alcool">Álcool</option>
+                    <option value="detergente">Detergente neutro</option>
+                    <option value="desinfetante">Desinfetante</option>
+                    <option value="limpa_vidros">Limpa-vidros</option>
+                    <option value="agua_sanitária">Água sanitária</option>
+                    <option value="limpador_multiuso">Limpador multiuso</option>
+                    <option value="desengraxante">Desengraxante</option>
+                    <option value="desodorizadores">Desodorizadores</option>
+                    <option value="sacos_lixo">Sacos de lixo</option>
+                    <option value="papel_toalha">Papel toalha</option>
+                    <option value="papel_higienico">Papel higiênico</option>
+                    <option value="fio_dental">Fio dental</option>
+                    <option value="sabao_espuma">Sabonete Espuma</option>
+                    <option value="alcool_gel">Álcool em gel</option>
+                    <option value="sabao_desengraxante">Sabonete Desengraxante</option>
+                    <option value="protetor_assento">Protetor de Assento Sanitário</option>
+                    <option value="peroxido_hidrogenio">Peróxido de hidrogênio</option>
+                    <option value="produtos_pisos">Produtos para tratamento de pisos</option>
+                    <option value="escova_limpeza">Escova de limpeza</option>
+                    <option value="esponjas_limpeza">Esponjas de limpeza</option>
+                    <option value="pulverizadores">Pulverizadores</option>
+                    <option value="dispenser">Dispensers</option>
+                    <option value="panos_nao_tecido">Panos não tecido</option>
+                    <option value="dispenser_papel_toalha">Dispenser para papel toalha</option>
+                    <option value="dispenser_papel_higienico">Dispenser para papel higiênico</option>
+                    <option value="saboneteira">Saboneteira</option>
+                    <option value="varredeira">Varredeira</option>
+                    <option value="aspirador_po">Aspirador de pó</option>
+                    <option value="rodo">Rodo</option>
+                    <option value="saco_lixo">Saco de Lixo</option>
+                    <option value="lixeiras_banheiro">Lixeiras para banheiros</option>
+                    <option value="lixeiras_coleta">Lixeiras de coleta seletiva</option>
+                    <option value="panos_varios">Panos variados (wiper, microfibra)</option>
+                    <option value="esponjas_descartaveis">Esponjas ou panos descartáveis</option>
+                    <option value="panos_reutilizaveis">Panos reutilizáveis</option>
+                    <option value="papel_sanitario">Papéis sanitários</option>
+                    <option value="limpa_banheiros">Limpa-banheiros</option>
+                    <option value="mop_umido">MOP úmido</option>
+                    <option value="mop_seco">MOP seco</option>
+                    <option value="baldes_plasticos">Baldes plásticos</option>
+                    <option value="vassouras">Vassouras</option>
+                    <option value="pás_lixo">Pás de lixo</option>
+                    <option value="produtos_especificos_piso">Produtos específicos para tipos de piso</option>
+                    <option value="fibras_esponjas">Fibras e esponjas de limpeza</option>
+                    <option value="borrifadores">Borrifadores</option>
+                    <option value="cronograma_limpeza">Cronograma de limpeza</option>
+                </select>
+                
+            </div>
+            <div class="input-group">
+                <label for="quantity">Quantidade</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Digite a quantidade" min="1" required>
+            </div>
+            <div class="input-group">
+                <label for="info">Outras informações</label>
+                <textarea id="info" name="info" rows="3" placeholder="Escreva informações adicionais"></textarea>
+            </div>
+            <button type="submit">Lançar</button>
+        </form>
+        <p id="formMessage" class="message"></p>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 CPIJ. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="despesas.js"></script>
+</body>
+</html>

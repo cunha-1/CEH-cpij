@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <script>
+        function handleLogin() {
+            // Pegando os dados do formulário
+            const usuarioInput = document.querySelector('input[name="usuario"]').value;
+            const senhaInput = document.querySelector('input[name="senha"]').value;
+            
+            // Pegando os dados salvos no localStorage
+            const usuarioSalvo = localStorage.getItem('usuario');
+            const senhaSalva = localStorage.getItem('senha');
+            
+            // Validando login
+            if (usuarioInput === usuarioSalvo && senhaInput === senhaSalva) {
+                alert('Login bem-sucedido! Bem-vindo(a) de volta.');
+                window.location.href = "lançamento.html"; // Redireciona para uma página de dashboard ou home
+            } else {
+                alert('Usuário ou senha incorretos. Tente novamente.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça login<br>E entre para o nosso time</h1>
+            <img src="inbox-cleanup-animate.svg" class="left-login-image" alt="Astronauta animação">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>LOGIN</h1>
+                <form onsubmit="handleLogin(); return false;">
+                    <div class="textfield">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" name="usuario" placeholder="Usuário" required>
+                    </div>
+                    <div class="textfield">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" placeholder="Senha" required>
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
+                <!-- Adicionando link para cadastro -->
+                <p class="register-text">Não tem uma conta? <a href="index.html" class="register-link">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

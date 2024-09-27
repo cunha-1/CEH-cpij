@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cadastro</title>
+    <script>
+        function handleRegister() {
+            const nome = document.querySelector('input[name="nome"]').value;
+            const usuario = document.querySelector('input[name="usuario"]').value;
+            const senha = document.querySelector('input[name="senha"]').value;
+
+            if (!nome || !usuario || !senha) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            localStorage.setItem('nome', nome);
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('senha', senha);
+
+            alert('Cadastro realizado com sucesso! Agora você pode fazer login.');
+            window.location.href = "login.html"; // Redireciona para login após cadastro
+        }
+    </script>
+</head>
+<body>
+    <div class="main-register">
+        <div class="left-register">
+            <h1>Crie sua conta<br>E junte-se a nós</h1>
+            <img src="cleaning-service-animate.svg" class="left-register-image" alt="Imagem de cadastro">
+        </div>
+        <div class="right-register">
+            <div class="card-register">
+                <h1>CADASTRO</h1>
+                <form onsubmit="handleRegister(); return false;">
+                    <div class="textfield">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="textfield">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" name="usuario" placeholder="Usuário" required>
+                    </div>
+                    <div class="textfield">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" placeholder="Senha" required>
+                    </div>
+                    <button type="submit" class="btn-register">Cadastrar</button>
+                </form>
+                <p class="login-text">Já tem uma conta? <a href="login.html" class="login-link">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas Registradas</title>
+    <link rel="icon" href="igeni__3_-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="index.css"> <!-- Referência ao CSS externo -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script> <!-- Adiciona a biblioteca autoTable -->
+</head>
+<body>
+    <div class="header">
+        <img src="igeni__1_-removebg-preview.png" alt="Logo" class="logo">
+        <button id="logoutButton">Sair</button>
+    </div>
+
+    <div class="card">
+        <div class="expenses-container">
+            <h2>Despesas Registradas</h2>
+            <div class="table-container">
+                <table id="expensesTable">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Saída</th>
+                            <th>Outras Informações</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- As despesas serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </div>
+            <button id="downloadPDF">📄 PDF</button>
+            <button id="addProduct">➕</button>
+            <button id="controlStock">📦 Controlar Estoque</button>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2024 CPIJ. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Atualiza a tabela quando a página é carregada
+        updateExpensesTable();
+
+        // Adiciona event listener para o botão de adicionar produto
+        document.getElementById('addProduct').addEventListener('click', addProduct);
+        document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            window.location.href = "index.html"; // Redireciona para a página cadastro.html
+        });
+
+        // Redireciona para a página de controle de estoque
+        document.getElementById('controlStock').addEventListener('click', () => {
+            window.location.href = "lançamento.html"; // Redireciona para a página index.html
+        });
+      });
+
+      function addProduct() {
+          const product = prompt("Digite o nome do produto:");
+          const quantity = parseInt(prompt("Digite a quantidade:"));
+          const output = parseInt(prompt("Digite a saída:"));
+          const info = prompt("Digite outras informações:");
+
+          // Validação de entradas
+          if (product && !isNaN(quantity) && !isNaN(output) && info) {
+              const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+              expenses.push({
+                  product,
+                  quantity,
+                  output,
+                  info,
+              });
+              localStorage.setItem('expenses', JSON.stringify(expenses));
+              updateExpensesTable();
+          } else {
+              alert('Por favor, preencha todos os campos corretamente.');
+          }
+      }
+
+      function updateExpensesTable() {
+        const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        const tbody = document.getElementById('expensesTable').getElementsByTagName('tbody')[0];
+        tbody.innerHTML = ''; // Limpar o tbody antes de preencher
+
+        expenses.forEach((expense, index) => {
+            const row = tbody.insertRow();
+            row.insertCell(0).textContent = expense.product;
+            row.insertCell(1).textContent = expense.quantity; // Quantidade fixa
+
+            // Adicionar input para edição da saída
+            const outputCell = row.insertCell(2);
+            const outputInput = document.createElement('input');
+            outputInput.type = 'number';
+            outputInput.value = expense.output;
+            outputInput.classList.add('output-input');
+            outputInput.onchange = (e) => updateOutput(index, e.target.value); // Atualizar valor ao mudar
+            outputCell.appendChild(outputInput);
+
+            row.insertCell(3).textContent = expense.info;
+
+            // Criar a célula para a ação de deletar
+            const deleteCell = row.insertCell(4); // Nova célula para o ícone de delete
+            const deleteIcon = document.createElement('span');
+            deleteIcon.textContent = '🗑️'; // Ícone de lixeira
+            deleteIcon.classList.add('delete-icon');
+            deleteIcon.onclick = () => deleteExpense(index); // Adiciona o evento de clique
+            deleteCell.appendChild(deleteIcon);
+        });
+      }
+
+      function updateOutput(index, value) {
+    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    const newOutput = parseFloat(value);
+
+    // Atualiza a saída apenas, sem alterar a quantidade
+    expenses[index].output = newOutput;
+          localStorage.setItem('expenses', JSON.stringify(expenses));
+          updateExpensesTable(); // Atualiza a tabela
+      }
+
+      function deleteExpense(index) {
+          const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+          expenses.splice(index, 1); // Remove a despesa selecionada
+          localStorage.setItem('expenses', JSON.stringify(expenses));   // Atualiza o localStorage
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+    updateExpensesTable(); // Atualiza a tabela
+}
+
+      function downloadPDF() {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+
+          // Obter a tabela de despesas
+          const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+          const tableColumn = ["Produto", "Quantidade", "Saída", "Outras Informações"];
+          const tableRows = [];
+
+          expenses.forEach(expense => {
+              const expenseData = [
+                  expense.product,
+                  expense.quantity,
+                  expense.output,
+                  expense.info,
+              ];
+              tableRows.push(expenseData);
+          });
+
+          // Adicionar tabela ao PDF
+          doc.autoTable(tableColumn, tableRows, { startY: 20 });
+
+          // Salvar o PDF
+          doc.save('despesas.pdf');
+      }
+    </script>
+</body>
+</html>

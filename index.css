@@ -1,0 +1,120 @@
+        body {
+            margin: 0;
+            font-family: 'Noto Sans', sans-serif;
+            background: #201b2c;
+            color: #f0ffffde;
+            display: flex;
+            justify-content: center; /* Center the card horizontally */
+            align-items: center; /* Center the card vertically */
+            min-height: 100vh; /* Garante que o corpo ocupe toda a altura */
+            flex-direction: column; /* Coluna para logo e card */
+        }
+
+        .header {
+            display: flex;
+            justify-content: center; /* Center the logo and button */
+            align-items: center; /* Center vertically */
+            margin-bottom: 20px; /* Espaço entre o cabeçalho e o card */
+        }
+
+        .header .logo {
+            height: 170px; /* Adjust the height as necessary */
+            margin-right: 200px; /* Espaço entre logo e botão */
+        }
+
+        .header button {
+            padding: 10px 40px;
+            border: none;
+            border-radius: 8px;
+            background: #ff6b6b;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header button:hover {
+            background-color: #ff3b3b;
+        }
+
+        .card {
+            width: 200%;
+            max-width: 650px; /* Max width of the card */
+            background: #2f2842;
+            border-radius: 20px;
+            box-shadow: 0px 10px 40px #00000056;
+            padding: 20px;
+        }
+
+        .expenses-container {
+            padding: 20px;
+        }
+
+        .expenses-container h2 {
+            color: #00ff88;
+            text-align: center;
+            margin-bottom: 20px; /* Espaço entre o título e a tabela */
+        }
+
+        .table-container {
+            margin-bottom: 20px; /* Espaçamento entre a tabela e os botões */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #00ff88;
+            text-align: left;
+            background: #3f364f; /* Cor de fundo das células */
+        }
+
+        tr {
+            margin-bottom: 10px; /* Espaço entre as linhas */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px; /* Espaço reduzido acima do botão */
+            border: none;
+            border-radius: 8px;
+            background: #00ff88;
+            color: #2b134b;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0px 10px 40px -12px #00ff8052;
+        }
+
+        button:hover {
+            background-color: #00e676;
+        }
+
+        .message {
+            text-align: center;
+            color: #00ff88;
+            margin-top: 20px; /* Espaço acima da mensagem */
+        }
+
+        .footer {
+            text-align: center; /* Centralizar texto do rodapé */
+            margin-top: 20px; /* Espaço acima do rodapé */
+        }
+
+        .footer p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .delete-icon {
+            cursor: pointer; /* Indica que é clicável */
+            margin-left: 10px; /* Espaço entre a célula e o ícone */
+            color: red; /* Cor do ícone */
+        }
+
+        .output-input {
+            width: 60px; /* Largura do campo de entrada */
+            text-align: right; /* Alinhamento do texto à direita */
+        }
+    
